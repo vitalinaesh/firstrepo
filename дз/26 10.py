@@ -1,3 +1,11 @@
+import logging
+logging.basicConfig(level=logging.INFO,
+                    filename='logs.log',
+                    filemode='w',
+                    format='%(levelname)s%(asctime)s - %(message)s')
+
+logging.info("program start")
+
 class NS:
     def __init__(self, name: str, surname: str):
         if type(name) != str:
@@ -17,8 +25,10 @@ class Student:
         self.ns = NS(name, surname)
         self.age = age
         Student.studentam += 1
+        logging.info(f"Зроблен  Student: {self.ns.name} {self.ns.surname}")
 
     def printst(self):
+
         print(f'Height: {self.height}')
         print(f'Name: {self.ns.name}')
         print(f'Surname: {self.ns.surname}')
@@ -29,10 +39,18 @@ class Student:
         print(f"Happy birthday to {self.ns.name}! Now you are {self.age} years old!")
 
 try:
-    frstudent = Student('Vitalina', 'Dunets', 0)
+    logging.debug("performance program (In progress...)")
+    frstudent = Student('Vitalina', 'Dunets', 13)
+    secondstudent = Student("Elya", "Pystovit", 65)
     frstudent.printst()
+    secondstudent.printst()
 except Exception as error:
     print(f"Error: {error}")
+    logging.error("Exception")
 
+logging.info("end of program")
+
+
+print("Next code")
 print(f'Number of students: {Student.studentam}')
 
